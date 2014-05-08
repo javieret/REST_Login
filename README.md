@@ -1,6 +1,10 @@
 ##REST login module using, express.js, mongodb and JWT Tokens
 
-You can create users and login with users, all of this it's using services so you simply use it for authenticating using a webpage or calling the service in your application and storing the JWT Token to identify the user and security purposes.
+All the application it’s built under REST services, you can do the following things
+1. Create users
+2. Sign in with a user and get the JWT TOKEN
+3. Identify a user by it’s JWT TOKEN
+
 
 
 
