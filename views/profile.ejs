@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Login</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+
+	<h3>JWT Token:</h3>
+	<h4 id="token"></h4>
+	</br>
+	<h3>User:</h3>
+	<h4 id="user"></h4>
+
+
+
+<script src="js/jquery.min.js"></script>
+<script>
+var token = window.localStorage.getItem('token');
+if (token) {
+	$.ajax({
+		type: "GET",
+		cache: false,
+		dataType: "json",
+		url: "/token/",
+		headers: { token:token },
+		success: function(data){
+			if(data){
+				$('#user').html(data);
+				$('#token').html(token);
+			}
+		}
+	});
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Login</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<body>
+
+	<div class="container">
+		<div class="row" style="margin-top:20px">
+		    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+				<form id="create_form" role="form">
+					<fieldset>
+						<h2>Please Sign Up</h2>
+						<hr class="colorgraph">
+						<div class="form-group">
+		                    <input type="email" name="username" id="email" class="form-control input-lg" placeholder="Email Address">
+						</div>
+						<div class="form-group">
+		                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+						</div>
+						<div class="form-group">
+		                    <input type="password" name="password2" id="password" class="form-control input-lg" placeholder="Confirm Password">
+						</div>
+						<hr class="colorgraph">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12">
+		                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Create Account">
+							</div>
+						</div>
+						<p class="error"></p>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script>
+		//Clear JWT Token
+		localStorage.clear();
+
+		$('#create_form').submit(function (e){
+			e.preventDefault();
+			$('.error').empty();
+			$.ajax({
+				type: "POST",
+				cache: false,
+				dataType: "json",
+				url: "/register/",
+				data: $('#create_form').serialize(),
+				success: function(data){
+					if(data == "inserted"){
+						window.location = "/";
+					}else{
+						$('.error').html(data);
+					}
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
